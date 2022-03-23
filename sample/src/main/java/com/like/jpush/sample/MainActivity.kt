@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity() {
 
     fun setTags1(view: View?) {
         val tags = HashSet<String>()
-        tags.add("tag4")
+        tags.add("20")
         JPushUtils.getInstance().setTags(tags)
     }
 
@@ -94,18 +94,21 @@ class MainActivity : AppCompatActivity() {
         JPushUtils.getInstance().resumePush()
     }
 
-    @BusObserver([JPushUtils.TAG_CLICK_NOTIFICATION])
-    fun onNotificationClicked(message: NotificationMessage) {
-        Log.d("MainActivity", "onNotificationClicked $message")
-    }
-
+    // 接收自定义消息
     @BusObserver([JPushUtils.TAG_RECEIVE_CUSTOM_MESSAGE])
     fun onReceiveCustomMessage(customMessage: CustomMessage) {
         Log.d("MainActivity", "onReceiveCustomMessage $customMessage")
     }
 
+    // 接收通知点击事件
+    @BusObserver([JPushUtils.TAG_CLICK_NOTIFICATION])
+    fun onNotificationClicked(message: NotificationMessage) {
+        Log.d("MainActivity", "onNotificationClicked $message")
+    }
+
+    // 接收用setAddActionsStyle()方法为自定义的通知按钮的点击事件
     @BusObserver([JPushUtils.TAG_CLICK_NOTIFICATION_BUTTON])
-    fun onNotificationButtonClicked(actionExtra: String) {
+    fun onNotificationButtonClicked(actionExtra: String?) {
         Log.d("MainActivity", "onNotificationButtonClicked $actionExtra")
     }
 }

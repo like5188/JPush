@@ -6,7 +6,7 @@ android {
     compileSdkVersion 31
 
     defaultConfig {
-        applicationId "com.like.jpush.sample"
+        applicationId "com.tgf.kcwc"
         minSdkVersion 23
         targetSdkVersion 31
         versionCode 1
@@ -15,7 +15,7 @@ android {
 
         manifestPlaceholders = [
                 JPUSH_PKGNAME: applicationId,
-                JPUSH_APPKEY : "7b8f5e20265c638491e91d34", //JPush 上注册的包名对应的 Appkey.
+                JPUSH_APPKEY : "aa6574e11b356353d163e0fc", //JPush 上注册的包名对应的 Appkey.
                 JPUSH_CHANNEL: "developer-default", //暂时填写默认值即可.
         ]
     }
