@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun setAlias(view: View?) {
-        JPushUtils.getInstance().setAlias("alias1")
+        JPushUtils.getInstance().setAlias("20")
     }
 
     fun setAlias1(view: View?) {
