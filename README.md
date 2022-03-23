@@ -33,13 +33,12 @@
         ]
     }
     dependencies {
-        implementation 'cn.jiguang.sdk:jpush:3.5.4'// JPush SDK 开发包。
-
-        // 点击通知的事件和自定义消息等等都是通过LiveDataBus来发送的。所以添加LiveDataBus的引用
-        implementation 'com.github.like5188.LiveDataBus:livedatabus:1.2.2'
-        kapt 'com.github.like5188.LiveDataBus:livedatabus_compiler:1.2.2'
-
         implementation 'com.github.like5188:JPush:版本号'
+        // 如果需要接收消息（tag为：JPushUtils.TAG_RECEIVE_CUSTOM_MESSAGE、、），则需要添加：
+        implementation 'cn.jiguang.sdk:jpush:4.6.2'// JPush SDK 开发包。
+        implementation 'com.github.like5188.FlowEventBus:floweventbus:1.1.1'
+        implementation 'com.github.like5188.FlowEventBus:floweventbus_annotations:1.1.1'
+        kapt 'com.github.like5188.FlowEventBus:floweventbus_compiler:1.1.1'
     }
 ```
 
@@ -53,21 +52,23 @@
 
 4、接收自定义消息、接收通知点击事件、接收用setAddActionsStyle()方法为自定义的通知按钮的点击事件。
 ```java
-    // 注册LiveDataBus
-    LiveDataBus.register(this, this);
+    // 注册FlowEventBus
+    FlowEventBus.register(this)
     // 接收自定义消息
     @BusObserver([JPushUtils.TAG_RECEIVE_CUSTOM_MESSAGE])
     fun onReceiveCustomMessage(customMessage: CustomMessage) {
-        Log.d("MainActivity", "onReceiveCustomMessage $customMessage")
-    }
+            Log.d("MainActivity", "onReceiveCustomMessage $customMessage")
+            }
+
     // 接收通知点击事件
     @BusObserver([JPushUtils.TAG_CLICK_NOTIFICATION])
     fun onNotificationClicked(message: NotificationMessage) {
-       Log.d("MainActivity", "onNotificationClicked $message")
-    }
+            Log.d("MainActivity", "onNotificationClicked $message")
+            }
+
     // 接收用setAddActionsStyle()方法为自定义的通知按钮的点击事件
     @BusObserver([JPushUtils.TAG_CLICK_NOTIFICATION_BUTTON])
-    fun onNotificationButtonClicked(actionExtra: String) {
-       Log.d("MainActivity", "onNotificationButtonClicked $actionExtra")
-    }
+    fun onNotificationButtonClicked(actionExtra: String?) {
+            Log.d("MainActivity", "onNotificationButtonClicked $actionExtra")
+            }
 ```
