@@ -6,24 +6,24 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import cn.jpush.android.api.CustomMessage
 import cn.jpush.android.api.NotificationMessage
+import com.like.floweventbus.FlowEventBus
+import com.like.floweventbus_annotations.BusObserver
 import com.like.jpush.JPushUtils
-import com.like.livedatabus.LiveDataBus.register
-import com.like.livedatabus_annotations.BusObserver
-import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        register(this, this)
+        FlowEventBus.register(this)
         JPushUtils.getInstance().init(this)
         JPushUtils.getInstance().debug(true)
         JPushUtils.getInstance().setAddActionsStyle(
-                1,
-                intArrayOf(R.drawable.jpush_ic_richpush_actionbar_back, R.drawable.jpush_ic_richpush_actionbar_divider),
-                arrayOf("按钮1", "按钮2"),
-                arrayOf("extra1", "extra2"))
+            1,
+            intArrayOf(R.drawable.jpush_ic_richpush_actionbar_back, R.drawable.jpush_ic_richpush_actionbar_divider),
+            arrayOf("按钮1", "按钮2"),
+            arrayOf("extra1", "extra2")
+        )
     }
 
     fun setAlias(view: View?) {

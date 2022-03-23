@@ -9,8 +9,8 @@ import androidx.annotation.IdRes
 import androidx.annotation.IntRange
 import androidx.annotation.LayoutRes
 import cn.jpush.android.api.*
+import com.like.floweventbus.FlowEventBus
 import com.like.jpush.TagAliasOperatorHelper.*
-import com.like.livedatabus.LiveDataBus
 
 class JPushUtils private constructor() {
 
@@ -29,21 +29,21 @@ class JPushUtils private constructor() {
          * 处理自定义按钮点击事件
          */
         fun onMultiActionClicked(actionExtra: String) {
-            LiveDataBus.post(TAG_CLICK_NOTIFICATION_BUTTON, actionExtra)
+            FlowEventBus.post(TAG_CLICK_NOTIFICATION_BUTTON, actionExtra)
         }
 
         /**
          * 处理收到的自定义消息
          */
         fun onMessage(customMessage: CustomMessage) {
-            LiveDataBus.post(TAG_RECEIVE_CUSTOM_MESSAGE, customMessage)
+            FlowEventBus.post(TAG_RECEIVE_CUSTOM_MESSAGE, customMessage)
         }
 
         /**
          * 处理打开通知
          */
         fun onNotifyMessageOpened(message: NotificationMessage) {
-            LiveDataBus.post(TAG_CLICK_NOTIFICATION, message)
+            FlowEventBus.post(TAG_CLICK_NOTIFICATION, message)
         }
     }
 
@@ -100,11 +100,11 @@ class JPushUtils private constructor() {
      * @param developerArg
      */
     fun setStyleBasic(
-            @IntRange(from = 1, to = 1000) id: Int,
-            @DrawableRes statusBarDrawable: Int = 0,
-            notificationFlags: Int = 16,
-            notificationDefaults: Int = -2,
-            developerArg: String = "developerArg0"
+        @IntRange(from = 1, to = 1000) id: Int,
+        @DrawableRes statusBarDrawable: Int = 0,
+        notificationFlags: Int = 16,
+        notificationDefaults: Int = -2,
+        developerArg: String = "developerArg0"
     ) {
         if (!::mContext.isInitialized) throw UnsupportedOperationException("you must call init(Context) first")
         val builder = BasicPushNotificationBuilder(mContext)
@@ -130,16 +130,16 @@ class JPushUtils private constructor() {
      * @param developerArg
      */
     fun setStyleCustom(
-            @IntRange(from = 1, to = 1000) id: Int,
-            @LayoutRes layout: Int,
-            @IdRes layoutIconId: Int,
-            @IdRes layoutTitleId: Int,
-            @IdRes layoutContentId: Int,
-            @DrawableRes layoutIconDrawable: Int = 0,
-            @DrawableRes statusBarDrawable: Int = 0,
-            notificationFlags: Int = 16,
-            notificationDefaults: Int = -2,
-            developerArg: String = "developerArg0"
+        @IntRange(from = 1, to = 1000) id: Int,
+        @LayoutRes layout: Int,
+        @IdRes layoutIconId: Int,
+        @IdRes layoutTitleId: Int,
+        @IdRes layoutContentId: Int,
+        @DrawableRes layoutIconDrawable: Int = 0,
+        @DrawableRes statusBarDrawable: Int = 0,
+        notificationFlags: Int = 16,
+        notificationDefaults: Int = -2,
+        developerArg: String = "developerArg0"
     ) {
         if (!::mContext.isInitialized) throw UnsupportedOperationException("you must call init(Context) first")
         val builder = CustomPushNotificationBuilder(mContext, layout, layoutIconId, layoutTitleId, layoutContentId)
@@ -164,10 +164,10 @@ class JPushUtils private constructor() {
      * @param extraArray            扩展数据，用于判断点击了哪个按钮
      */
     fun setAddActionsStyle(
-            @IntRange(from = 1, to = 1000) id: Int,
-            drawableIdResArray: IntArray,
-            nameArray: Array<String>,
-            extraArray: Array<String>
+        @IntRange(from = 1, to = 1000) id: Int,
+        drawableIdResArray: IntArray,
+        nameArray: Array<String>,
+        extraArray: Array<String>
     ) {
         if (!::mContext.isInitialized) throw UnsupportedOperationException("you must call init(Context) first")
         if (drawableIdResArray.isEmpty() || drawableIdResArray.size != nameArray.size || drawableIdResArray.size != extraArray.size) {
