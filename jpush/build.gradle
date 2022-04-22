@@ -40,8 +40,8 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
-    implementation 'cn.jiguang.sdk:jpush:4.6.2'// JPush SDK 开发包。
-    implementation 'cn.jiguang.sdk:jcore:3.2.2'// 极光开发者服务的核心包。
+    api 'cn.jiguang.sdk:jpush:4.6.2'// JPush SDK 开发包。
+    api 'cn.jiguang.sdk:jcore:3.2.2'// 极光开发者服务的核心包。
 
-    implementation 'com.github.like5188.FlowEventBus:floweventbus:1.1.1'
+    implementation 'com.github.like5188.FlowEventBus:floweventbus:1.2.0'
 }

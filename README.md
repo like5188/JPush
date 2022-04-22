@@ -34,8 +34,7 @@
     }
     dependencies {
         implementation 'com.github.like5188:JPush:版本号'
-        // 如果需要接收消息（tag为：JPushUtils.TAG_RECEIVE_CUSTOM_MESSAGE、、），则需要添加：
-        implementation 'cn.jiguang.sdk:jpush:4.6.2'// JPush SDK 开发包。
+        // 通过事件总线 FlowEventBus 接收操作通知的消息（tag为：JPushUtils.TAG_RECEIVE_CUSTOM_MESSAGE、、），添加：
         implementation 'com.github.like5188.FlowEventBus:floweventbus:1.1.1'
         implementation 'com.github.like5188.FlowEventBus:floweventbus_annotations:1.1.1'
         kapt 'com.github.like5188.FlowEventBus:floweventbus_compiler:1.1.1'
@@ -53,6 +52,7 @@
 4、接收自定义消息、接收通知点击事件、接收用setAddActionsStyle()方法为自定义的通知按钮的点击事件。
 ```java
     // 注册FlowEventBus
+    FlowEventBus.init()
     FlowEventBus.register(this)
     // 接收自定义消息
     @BusObserver([JPushUtils.TAG_RECEIVE_CUSTOM_MESSAGE])

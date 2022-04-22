@@ -15,6 +15,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        FlowEventBus.init()
         FlowEventBus.register(this)
         JPushUtils.getInstance().init(this)
         JPushUtils.getInstance().debug(true)
