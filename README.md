@@ -7,6 +7,8 @@
 ## 功能介绍
 
 1、极光推送工具类。
+    api 'cn.jiguang.sdk:jpush:4.6.2'// JPush SDK 开发包。
+    implementation 'cn.jiguang.sdk:jcore:3.2.2'// 极光开发者服务的核心包。
 
 ## 使用方法：
 
@@ -35,9 +37,9 @@
     dependencies {
         implementation 'com.github.like5188:JPush:版本号'
         // 通过事件总线 FlowEventBus 接收操作通知的消息（tag为：JPushUtils.TAG_RECEIVE_CUSTOM_MESSAGE、、），添加：
-        implementation 'com.github.like5188.FlowEventBus:floweventbus:1.3.1'
-        implementation 'com.github.like5188.FlowEventBus:floweventbus_annotations:1.3.1'
-        kapt 'com.github.like5188.FlowEventBus:floweventbus_compiler:1.3.1'
+        implementation 'com.github.like5188.FlowEventBus:floweventbus:1.3.2'
+        implementation 'com.github.like5188.FlowEventBus:floweventbus_annotations:1.3.2'
+        kapt 'com.github.like5188.FlowEventBus:floweventbus_compiler:1.3.2'
     }
 ```
 
