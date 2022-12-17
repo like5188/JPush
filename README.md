@@ -35,15 +35,14 @@
     dependencies {
         implementation 'com.github.like5188:JPush:版本号'
         // 通过事件总线 FlowEventBus 接收操作通知的消息（tag为：JPushUtils.TAG_RECEIVE_CUSTOM_MESSAGE、、），添加：
-        implementation 'com.github.like5188.FlowEventBus:floweventbus:1.1.1'
-        implementation 'com.github.like5188.FlowEventBus:floweventbus_annotations:1.1.1'
-        kapt 'com.github.like5188.FlowEventBus:floweventbus_compiler:1.1.1'
+        implementation 'com.github.like5188.FlowEventBus:floweventbus:1.3.1'
+        implementation 'com.github.like5188.FlowEventBus:floweventbus_annotations:1.3.1'
+        kapt 'com.github.like5188.FlowEventBus:floweventbus_compiler:1.3.1'
     }
 ```
 
 2、初始化。
 ```java
-    JPushUtils.getInstance().init(this)
     JPushUtils.getInstance().debug(true)
 ```
 
